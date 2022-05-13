@@ -1,0 +1,111 @@
+
+################################
+#### Piping and Redirecting ####
+################################
+
+#Appending commands together with a pipe
+echo "hello world" | grep hello
+
+#Sending output of a command to a file
+echo “hello world” > hello.txt
+
+#Appending output of a command to a file (no overwriting)
+echo "hello world" >> hello.txt
+
+#Getting input to a command from a file
+cat < hello.txt
+
+#####################################
+#### Searching and word counting ####
+#####################################
+#Searching words from files
+#Try with grep -n, -o or -B [n] -A [n]
+grep ‘hello’ filename
+
+#Try this -
+grep ‘phrase_from_fastq’ fastqfile | wc -l
+
+
+###############################
+#### Text Editing - Imogen ####
+###############################
+
+#SED
+#Most common: substitution
+sed [options] ‘s/REGEX/REPLACEMENT/[FLAGS]’  file
+sed [options] ‘s/foo/bar/[FLAGS]’  file
+#	Flags: g = global, [1:9] = number match,  p = print
+#Removal of lines
+sed [options] ‘1,3d’
+#Printing lines
+sed -n 5, 30p
+
+#Try this -
+echo ‘abc’ | sed ‘s/abc/xyz/’
+#And what is this one doing?
+echo ‘abc’ | sed ‘s/./xyz/g’
+
+#AWK on tabulated data, printing sums or certain columns
+awk '
+ 	BEGIN { actions } 
+ 	/pattern/ { actions }
+               …….
+	 END { actions } 
+' filenames
+
+awk -F  '|'  '$1 ~ /fish/ {sum += $3} END {print sum}'  inputfilename
+awk -F  '|'  '$1 ~ /^fish$/ {sum += $3} END {print sum}'  inputfilename
+awk -F '|'  '$1 == "fish" {sum += $3} END {print sum}'  inputfilename
+
+#SPLIT up file by number of lines (-l) or bytes (-b)
+split [options] filename prefix
+
+## TEXT EDITOR PRACTISE I
+mkdir exercise2 ; cd exercise2 	#making directory and file
+echo 1 2 1 > exercise2.txt
+echo 1 2 3 >> exercise2.txt
+head exercise2.txt				#looking at file
+sed -i  ‘s/1/4/2’ exercise2.txt	#changing the second instance of “1” to “4”
+awk -F" " '{print $0, "the sum is "$1+$2+$3}' exercise2.txt > exercise2_sum.txt  #summing and creating new column
+split -l 1 -d --additional-suffix .txt exercise2_sum.txt exercise2_ 
+ls #splitting the output file into separate numbered files
+
+###################################################
+#### Conditional Statements and Loops - Imogen ####
+###################################################
+
+#given two varaibles with $1 being age and $2 being yes || no having a note from parents
+if [ $1 > 18 ]
+then
+echo You may go to the party.
+elif [ $2 == 'yes' ]
+then
+echo You may go to the party but be back before midnight.
+else
+echo You may not go to the party.
+fi
+
+while read line 
+do 
+    echo $line
+done < file.txt
+
+for i in 1 2 3 4 5
+do
+   echo "Welcome $i times"
+done
+
+for i in {0..10..2}
+  do 
+     echo "Welcome $i times"
+ done
+
+## TEXT EDITOR PRACTISE II
+cd ~/exercise2
+wget https://raw.githubusercontent.com/Imogen-D/Bases_De_Bash_Workshop/main/exercise2script.awk 
+ls #check your file is there
+less exercise2script.awk #whats in the file? press 'q' to quit
+chmod +x exercise2script.awk #make the script executable
+./exercise2script.awk exercise2_02.txt #run the script
+
+
