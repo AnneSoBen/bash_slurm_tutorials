@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# let's now build a proper exercise to prepare later work and wrap-up most of what we just saw
+
 cd ~/work
 cd bash_slurm_training
 mkdir data slumr # creates 3 folders
