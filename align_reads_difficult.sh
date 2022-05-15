@@ -12,7 +12,7 @@ data_folder="../../data/MiSeq_SOP/fastq_files"
 results_folder="results"
 fastq_R1=("${data_folder}"/*_R1_001.fastq)
 fastq_R1_id=$(basename -s .fastq "${fastq_R1[$SLURM_ARRAY_TASK_ID]}")
-fastq_R2=("${data_folder}"/*R2_001.fastq)
+fastq_R2=("${data_folder}"/*_R2_001.fastq)
 fastq_R2_id=$(basename -s .fastq "${fastq_R2[$SLURM_ARRAY_TASK_ID]}")
 
 ipe_res=$(echo "$fastq_R1_id.fastq" | sed 's/R1/R1R2/g') 
