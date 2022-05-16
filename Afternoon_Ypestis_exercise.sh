@@ -20,7 +20,7 @@ module load bioinfo/sratoolkit.2.8.2-1
 
 # Download the SRA (fastq) files of our chosen accession ; here some RNAseq reads SRR18369392
 fastq-dump -X 5 -Z SRR18369392 #check this is a file we want by printing the first 5 lines
-fastq-dump -X 200000 analyses/SRR18369392 #now we download the first 200,000 spots (all of it would take too long for the purposes of training!)
+fastq-dump -X 200000 --outdir analyses SRR18369392 #now we download the first 200,000 spots (all of it would take too long for the purposes of training!)
 
 ################################################
 #### Now lets align our reads to the genome ####
