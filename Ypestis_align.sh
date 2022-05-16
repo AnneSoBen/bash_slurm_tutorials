@@ -15,7 +15,7 @@ module load bioinfo/bcftools-1.14
 
 #this is the alignment function, look at the documentation for bwa for more information and parameters
 echo indexing and aligning
-bwa index analyses/$genome #bwa requires the genome to be indexed
+bwa index $genome #bwa requires the genome to be indexed
 bwa mem $genome $fastq_file > results/${name}_aligned.sam
 
 #now we use 'samtools' a common tool for aligned sequence data, but first we convert our 'sam' to a 'bam'
