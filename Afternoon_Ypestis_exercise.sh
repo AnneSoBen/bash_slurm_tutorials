@@ -36,7 +36,7 @@ chmod +x analyses/Ypestis_align.sh #make the script executable
 output_name=Ypestis
 
 #these are very small files so we manage with only requesting 1 cpu and 4G memory
-sbatch --cpus-per-task=1 --mem=4G  -J align.$output_name -o align.${output_name}.log analyses/Ypestis_align.sh SRR18369392.fastq GCF_015336265.1_ASM1533626v1_genomic.fna.gz  $output_name #run the script, giving it the genome and the fastq file
+sbatch --cpus-per-task=1 --mem=4G  -J align.$output_name -o results/align.${output_name}.log analyses/Ypestis_align.sh analyses/SRR18369392.fastq analyses/GCF_015336265.1_ASM1533626v1_genomic.fna.gz  $output_name #run the script, giving it the genome and the fastq file
 
 #check if the job is running, change $user to your username
 squeue -u $user -o "%.15i %.30j %.8u %.2t %.10M %.6D %.6C %.6m %R"
