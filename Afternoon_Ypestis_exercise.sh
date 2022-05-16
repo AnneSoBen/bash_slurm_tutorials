@@ -13,7 +13,7 @@ cd afternoon_Ypestis
 curl -L "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/015/336/265/GCF_015336265.1_ASM1533626v1/GCF_015336265.1_ASM1533626v1_genomic.fna.gz"  -o GCF_015336265.1_ASM1533626v1_genomic.fna.gz
 
 # Is sra toolkit on the cluster ?
-search_modules sra
+search_module sra
 
 # Get this version -> the others may not be configured!
 module load bioinfo/sratoolkit.2.8.2-1
