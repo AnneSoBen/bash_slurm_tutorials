@@ -19,6 +19,6 @@ ipe_res=$(echo "$fastq_R1_id.fastq" | sed 's/R1/R1R2/g')
 grep_res=$(echo $ipe_res | sed 's/.fastq/.ali.fastq/g')
 obi_res=$(echo "$fastq_R1_id.fastq" | sed 's/R1_001.fastq/stat.txt/g')
 
-srun -J "${fastq_R1_id} alignment" illuminapairedend --score-min=40 -r  "$data_folder"/"$fastq_R1_id.fastq" "$data_folder"/"$fastq_R1_id.fastq" > "$results_folder"/"${ipe_res}"
+srun -J "${fastq_R1_id} alignment" illuminapairedend --score-min=40 -r  "$data_folder"/"$fastq_R2_id.fastq" "$data_folder"/"$fastq_R1_id.fastq" > "$results_folder"/"${ipe_res}"
 srun -J "${fastq_R1_id} obigrep" obigrep -p 'mode!="joined"' "$results_folder"/"${ipe_res}" > "$results_folder"/"${grep_res}" 
 srun -J "${fastq_R1_id} obistat" obistat -c score "$results_folder"/"${grep_res}" > "$results_folder"/"${obi_res}"
