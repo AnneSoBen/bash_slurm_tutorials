@@ -6,7 +6,8 @@
 #SBATCH -e align_reads_error_%j.err
 #SBATCH --mail-type=BEGIN,END,FAIL
 
-module load bioinfo/obitools-v1.2.11
+module load devel/Miniconda/Miniconda3
+module load bioinfo/OBITools/1.2.11
 
 data_folder="../../data/MiSeq_SOP/fastq_files"
 results_folder="results"

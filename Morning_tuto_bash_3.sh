@@ -84,7 +84,7 @@ ls individual_SX0?.txt
 
 # list SX and SY files from individual 01:
 touch individual_SY{00..25}.txt
-ls individual_S[XYZ]01.txt
+ls individual_S[XY]01.txt
 
 # What is that one doing ????
 ls individual_S[XYZ][!023]1.txt
